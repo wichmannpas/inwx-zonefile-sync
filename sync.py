@@ -22,6 +22,9 @@ def dns_item_to_record(dataset, item, dnsorigin, key):
 	elif dataset.rdtype == dns.rdatatype.AAAA:
 		record['content'] = item.address
 		record['type'] = 'AAAA'
+	elif dataset.rdtype == dns.rdatatype.CAA:
+		record['content'] = item.to_text()
+		record['type'] = 'CAA'
 	elif dataset.rdtype == dns.rdatatype.MX:
 		record['content'] = dns_name_to_text(item.exchange, dnsorigin=dnsorigin)
 		record['prio'] = item.preference
